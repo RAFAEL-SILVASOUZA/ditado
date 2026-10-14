@@ -3,6 +3,7 @@ import { Cpu, Keyboard, SlidersHorizontal } from 'lucide-react'
 import GeneralTab from './GeneralTab'
 import ModelsTab from './ModelsTab'
 import ShortcutTab from './ShortcutTab'
+import WelcomeBanner from './WelcomeBanner'
 
 type Tab = 'shortcut' | 'models' | 'general'
 
@@ -18,11 +19,14 @@ const isTab = (value: string): value is Tab => TABS.some((t) => t.id === value)
 export default function SettingsApp() {
   const initial = window.location.hash.slice(1)
   const [tab, setTab] = useState<Tab>(isTab(initial) ? initial : 'shortcut')
+  // muda quando o aviso de boas-vindas grava a configuração: a aba aberta é remontada e relê
+  const [revision, setRevision] = useState(0)
 
   useEffect(() => window.api.onSettingsTab((next) => isTab(next) && setTab(next)), [])
 
   return (
     <div className="flex h-full flex-col">
+      <WelcomeBanner onAnswered={() => setRevision((r) => r + 1)} />
       <nav className="flex gap-1 border-b border-border px-4 pt-3" role="tablist">
         {TABS.map(({ id, label, icon: Icon }) => (
           <button
@@ -41,7 +45,7 @@ export default function SettingsApp() {
           </button>
         ))}
       </nav>
-      <main className="flex-1 overflow-y-auto p-5">
+      <main key={revision} className="flex-1 overflow-y-auto p-5">
         {tab === 'shortcut' && <ShortcutTab />}
         {tab === 'models' && <ModelsTab />}
         {tab === 'general' && <GeneralTab />}

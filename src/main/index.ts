@@ -12,6 +12,7 @@ import { SPEECH_CATALOG } from './speech/model-catalog'
 import { createSpeechModelManager } from './speech/model-manager'
 import { createTranscriber, type ModelSpec } from './speech/transcriber'
 import { deliverText } from './system/paste'
+import { createLoginItem } from './system/login-item'
 import { canControlKeyboard, microphoneAccess } from './system/permissions'
 import { createTray } from './tray'
 import { OVERLAY_HEIGHT, OVERLAY_WIDTH, createOverlayWindow, overlayBounds, showSettingsWindow } from './windows'
@@ -35,6 +36,11 @@ function start(): void {
   const dataDir = app.getPath('userData')
   const settings = createSettingsStore(join(dataDir, 'settings.json'))
   const modelsDir = join(dataDir, 'models')
+
+  // a caixa "iniciar junto com o sistema" pode ter sido marcada no instalador (ou desligada no sistema):
+  // a configuração segue o estado real
+  const loginItem = createLoginItem(app)
+  if (app.isPackaged) settings.set({ openAtLogin: loginItem.isEnabled() })
 
   const broadcast = (channel: string, payload: unknown): void => {
     for (const win of BrowserWindow.getAllWindows()) {
@@ -104,7 +110,8 @@ function start(): void {
   handle(IpcChannels.settingsSet, (patch: Partial<Settings>) => {
     const { shortcut: _ignored, ...rest } = (patch ?? {}) as Partial<Settings>
     const next = settings.set(rest)
-    if (typeof rest.openAtLogin === 'boolean') app.setLoginItemSettings({ openAtLogin: rest.openAtLogin })
+    // em modo dev o executável é o electron.exe: não vale registrar
+    if (typeof rest.openAtLogin === 'boolean' && app.isPackaged) loginItem.setEnabled(rest.openAtLogin)
     return next
   })
   handle(IpcChannels.shortcutSet, (accelerator: string) => {

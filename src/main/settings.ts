@@ -10,6 +10,7 @@ export const DEFAULT_SETTINGS: Settings = {
   language: null,
   autoPaste: true,
   openAtLogin: false,
+  welcomeSeen: false,
   overlayPosition: null
 }
 
@@ -28,6 +29,7 @@ export function sanitize(raw: unknown): Settings {
       typeof value.language === 'string' && /^[a-z]{2,3}$/.test(value.language) ? value.language : null,
     autoPaste: typeof value.autoPaste === 'boolean' ? value.autoPaste : DEFAULT_SETTINGS.autoPaste,
     openAtLogin: typeof value.openAtLogin === 'boolean' ? value.openAtLogin : DEFAULT_SETTINGS.openAtLogin,
+    welcomeSeen: typeof value.welcomeSeen === 'boolean' ? value.welcomeSeen : DEFAULT_SETTINGS.welcomeSeen,
     overlayPosition:
       position && Number.isFinite(position.x) && Number.isFinite(position.y)
         ? { x: Math.round(position.x as number), y: Math.round(position.y as number) }

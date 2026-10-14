@@ -17,6 +17,9 @@ asarUnpack:
   - node_modules/sharp/**
   - node_modules/@img/**
 npmRebuild: false
+# Usa o Electron já baixado em node_modules em vez de extrair o zip de novo: no Windows o antivírus trava o
+# default_app.asar recém-extraído e o build falha com EPERM. Por isso cada sistema gera o próprio instalador.
+electronDist: node_modules/electron/dist
 win:
   icon: build/icon.ico
   target:
@@ -24,6 +27,9 @@ win:
 nsis:
   oneClick: false
   allowToChangeInstallationDirectory: true
+  # página "Opções" com as caixas de atalho na área de trabalho e iniciar com o Windows (build/installer.nsh)
+  include: build/installer.nsh
+  createDesktopShortcut: false
 mac:
   icon: build/icon.png
   target:

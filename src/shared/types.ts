@@ -39,6 +39,8 @@ export interface Settings {
   /** Simula Ctrl+V / ⌘V depois de pôr o texto na área de transferência. */
   autoPaste: boolean
   openAtLogin: boolean
+  /** macOS: o aviso de boas-vindas (iniciar junto com o Mac) já foi respondido. */
+  welcomeSeen: boolean
   overlayPosition: { x: number; y: number } | null
 }
 
