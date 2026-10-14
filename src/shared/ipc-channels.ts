@@ -1,0 +1,20 @@
+export const IpcChannels = {
+  settingsGet: 'settings.get',
+  settingsSet: 'settings.set',
+  shortcutSet: 'shortcut.set',
+  shortcutSuspend: 'shortcut.suspend',
+  modelsList: 'models.list',
+  modelsDownload: 'models.download',
+  modelsCancel: 'models.cancel',
+  modelsRemove: 'models.remove',
+  modelsEvent: 'models.event',
+  transcribe: 'speech.transcribe',
+  requestMicrophone: 'speech.requestMicrophone',
+  overlayCommand: 'overlay.command',
+  overlayDeliver: 'overlay.deliver',
+  overlayDismiss: 'overlay.dismiss',
+  overlayResize: 'overlay.resize',
+  overlayReveal: 'overlay.reveal',
+  openSettings: 'app.openSettings',
+  systemLanguage: 'app.systemLanguage'
+} as const

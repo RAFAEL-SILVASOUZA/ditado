@@ -1,0 +1,30 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-bg: #161616;
+  --color-panel: #1e1e1e;
+  --color-hover: #2a2a2a;
+  --color-border: #303030;
+  --color-text: #e6e6e6;
+  --color-muted: #9a9a9a;
+  --color-accent: #4f8cff;
+  --color-danger: #ef5a5a;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  height: 100%;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+body.overlay {
+  background: transparent;
+  overflow: hidden;
+}
+
+body.settings {
+  background: var(--color-bg);
+  color: var(--color-text);
+}

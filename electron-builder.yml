@@ -1,0 +1,40 @@
+appId: com.ditado.app
+productName: Ditado
+directories:
+  output: dist
+  buildResources: build
+files:
+  - out/**
+  - package.json
+extraResources:
+  - from: build/icon.png
+    to: icon.png
+# onnxruntime-node (via @huggingface/transformers) carrega binários nativos (.node, DirectML.dll, .dylib):
+# precisam ficar fora do app.asar.
+asarUnpack:
+  - node_modules/onnxruntime-node/**
+  - node_modules/onnxruntime-common/**
+  - node_modules/sharp/**
+  - node_modules/@img/**
+npmRebuild: false
+win:
+  icon: build/icon.ico
+  target:
+    - nsis
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+mac:
+  icon: build/icon.png
+  target:
+    - dmg
+  category: public.app-category.productivity
+  # Sem certificado Developer ID: assinatura ad-hoc.
+  identity: '-'
+  # O hardened runtime nega o microfone sem pedir permissão se o app não tiver o entitlement de áudio.
+  entitlements: build/entitlements.mac.plist
+  entitlementsInherit: build/entitlements.mac.plist
+  extendInfo:
+    # Só na barra de menu, sem ícone no Dock.
+    LSUIElement: true
+    NSMicrophoneUsageDescription: O Ditado usa o microfone para transformar a sua fala em texto (a transcrição roda no seu computador).
