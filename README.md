@@ -187,8 +187,8 @@ O desenho completo está em [`docs/design.md`](docs/design.md).
 
 ## Privacidade e contribuições
 
-A transcrição é local. Os modelos precisam ser baixados antes do uso offline. O texto fica no clipboard; evite mudar de janela durante a transcricao com colagem automatica ativa. Veja [Privacidade](PRIVACY.md), [Seguranca](SECURITY.md) e [Como contribuir](CONTRIBUTING.md).
+A transcrição é local. Os modelos precisam ser baixados antes do uso offline. O texto fica no clipboard; evite mudar de janela durante a transcrição com colagem automática ativa. Veja [Privacidade](PRIVACY.md), [Segurança](SECURITY.md) e [Como contribuir](CONTRIBUTING.md).
 
 ## Licença
 
-O código do Ditado usa a [licenca MIT](LICENSE).
+O código do Ditado usa a [licença MIT](LICENSE).
