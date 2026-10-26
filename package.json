@@ -4,6 +4,15 @@
   "private": true,
   "version": "0.1.0",
   "license": "MIT",
+  "author": "Rafael Souza",
+  "homepage": "https://github.com/RAFAEL-SILVASOUZA/ditado#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RAFAEL-SILVASOUZA/ditado.git"
+  },
+  "bugs": {
+    "url": "https://github.com/RAFAEL-SILVASOUZA/ditado/issues"
+  },
   "description": "Ditado por voz local (Whisper) com atalho global",
   "type": "module",
   "main": "out/main/index.js",
