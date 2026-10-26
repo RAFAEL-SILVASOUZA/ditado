@@ -7,6 +7,11 @@ const MARGIN = 16
 
 const preload = (): string => join(__dirname, '../preload/index.js')
 
+function restrictNavigation(win: BrowserWindow): void {
+  win.webContents.setWindowOpenHandler(() => ({ action: 'deny' }))
+  win.webContents.on('will-navigate', (event) => event.preventDefault())
+}
+
 function load(win: BrowserWindow, page: 'overlay' | 'settings', hash = ''): void {
   const devUrl = process.env.ELECTRON_RENDERER_URL
   if (devUrl) void win.loadURL(`${devUrl}/${page}.html${hash ? `#${hash}` : ''}`)
@@ -52,7 +57,7 @@ export function createOverlayWindow(onMoved: (position: { x: number; y: number }
     ...(isMac ? { type: 'panel' as const } : {}),
     webPreferences: {
       preload: preload(),
-      sandbox: false,
+      sandbox: false, nodeIntegration: false,
       contextIsolation: true,
       // grava e anima a onda mesmo sem foco
       backgroundThrottling: false
@@ -64,6 +69,7 @@ export function createOverlayWindow(onMoved: (position: { x: number; y: number }
     const [x, y] = win.getPosition()
     onMoved({ x, y })
   })
+  restrictNavigation(win)
   load(win, 'overlay')
   return win
 }
@@ -88,12 +94,13 @@ export function showSettingsWindow(tab?: string): BrowserWindow {
     backgroundColor: '#161616',
     autoHideMenuBar: true,
     show: false,
-    webPreferences: { preload: preload(), sandbox: false, contextIsolation: true }
+    webPreferences: { preload: preload(), sandbox: false, nodeIntegration: false, contextIsolation: true }
   })
   win.once('ready-to-show', () => win.show())
   win.on('closed', () => {
     settingsWindow = null
   })
+  restrictNavigation(win)
   load(win, 'settings', tab)
   settingsWindow = win
   return win

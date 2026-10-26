@@ -30,8 +30,6 @@ export function pasteCommand(platform: NodeJS.Platform): { file: string; args: s
       args: [
         '-NoProfile',
         '-NonInteractive',
-        '-ExecutionPolicy',
-        'Bypass',
         '-Command',
         "Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.SendKeys]::SendWait('^v')"
       ]

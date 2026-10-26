@@ -3,3 +3,12 @@ out/
 dist/
 *.log
 dist-*/
+.agent-platform/
+
+.env
+.env.*
+!.env.example
+*.pem
+*.p12
+*.pfx
+*.key

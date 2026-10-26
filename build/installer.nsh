@@ -16,10 +16,10 @@
   Var DitadoStartWithWindows
 !endif
 
-; as duas opções começam marcadas (também valem na instalação silenciosa, que pula as páginas)
+; O atalho vem marcado; iniciar com Windows fica desmarcado por padrao.
 !macro customInit
   StrCpy $DitadoCreateDesktop ${BST_CHECKED}
-  StrCpy $DitadoStartWithWindows ${BST_CHECKED}
+  StrCpy $DitadoStartWithWindows ${BST_UNCHECKED}
 !macroend
 
 ; as funções ficam aqui dentro: este arquivo entra antes do MUI2.nsh, e este macro roda depois dele

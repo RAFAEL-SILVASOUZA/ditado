@@ -90,6 +90,7 @@ describe('paste', () => {
   it('builds the keystroke command of each system', () => {
     expect(pasteCommand('win32')?.file).toBe('powershell.exe')
     expect(pasteCommand('win32')?.args.at(-1)).toContain("SendWait('^v')")
+    expect(pasteCommand('win32')?.args).not.toContain('Bypass')
     expect(pasteCommand('darwin')).toEqual({
       file: 'osascript',
       args: ['-e', 'tell application "System Events" to keystroke "v" using command down']

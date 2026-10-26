@@ -31,7 +31,7 @@ Baixe o instalador da sua plataforma (ou gere um, veja [Compilação](#compilaç
    - **Criar atalho na área de trabalho**;
    - **Iniciar o Ditado junto com o Windows**.
 
-   As duas vêm marcadas. O atalho no Menu Iniciar é criado sempre. Depois dá para ligar ou desligar o início
+   O atalho vem marcado; iniciar junto com o Windows vem desmarcado. O atalho no Menu Iniciar é criado sempre. Depois dá para ligar ou desligar o início
    automático na aba **Geral**.
 4. Na primeira vez que o app abrir, a aba **Modelos** aparece. Siga o [Primeiro uso](#primeiro-uso).
 
@@ -123,8 +123,8 @@ combinação, o Ditado avisa e mantém o atalho anterior. **Restaurar padrão** 
 ### Rodar em modo de desenvolvimento
 
 ```bash
-git clone https://github.com/RAFAEL-SILVASOUZA/voice-dictation.git
-cd voice-dictation
+git clone https://github.com/RAFAEL-SILVASOUZA/ditado.git
+cd ditado
 npm install
 npm run dev
 ```
@@ -184,3 +184,11 @@ O desenho completo está em [`docs/design.md`](docs/design.md).
 - O atalho funciona no modo liga/desliga. Segurar a tecla para falar ainda não é suportado.
 - O texto aparece de uma vez no fim, não enquanto você fala.
 - Os instaladores não têm assinatura digital (SmartScreen no Windows; "botão direito → Abrir" no Mac).
+
+## Privacidade e contribuições
+
+A transcrição é local. Os modelos precisam ser baixados antes do uso offline. O texto fica no clipboard; evite mudar de janela durante a transcricao com colagem automatica ativa. Veja [Privacidade](PRIVACY.md), [Seguranca](SECURITY.md) e [Como contribuir](CONTRIBUTING.md).
+
+## Licença
+
+O código do Ditado usa a [licenca MIT](LICENSE).

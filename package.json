@@ -3,6 +3,7 @@
   "productName": "Ditado",
   "private": true,
   "version": "0.1.0",
+  "license": "MIT",
   "description": "Ditado por voz local (Whisper) com atalho global",
   "type": "module",
   "main": "out/main/index.js",
