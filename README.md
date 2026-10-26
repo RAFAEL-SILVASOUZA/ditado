@@ -116,7 +116,7 @@ combinação, o Ditado avisa e mantém o atalho anterior. **Restaurar padrão** 
 
 ### Requisitos
 
-- [Node.js](https://nodejs.org) 22 ou mais novo (testado com o 24) e npm
+- [Node.js](https://nodejs.org) 22.22.2+, 24.15+ ou 26+ (testado com o 24) e npm
 - Git
 - Para gerar o instalador do Mac, é preciso um **Mac**: o `.dmg` não é gerado no Windows.
 
